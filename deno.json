@@ -1,0 +1,21 @@
+{
+  "imports": {
+    "@std/http/file-server": "jsr:@std/http/file-server",
+    "rehype-sanitize": "npm:rehype-sanitize",
+    "rehype-stringify": "npm:rehype-stringify",
+    "remark-gfm": "npm:remark-gfm",
+    "remark-parse": "npm:remark-parse",
+    "remark-rehype": "npm:remark-rehype",
+    "unified": "npm:unified",
+    "unist-util-visit": "npm:unist-util-visit"
+  },
+  "deploy": {
+    "project": "740660cc-a107-404f-99c6-b5b84a0fb4f1",
+    "exclude": [
+      "**/node_modules",
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "main.ts"
+  }
+}
