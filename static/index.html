@@ -5,35 +5,94 @@
     <link rel="stylesheet" href="/github-markdown.css" type="text/css">
     <link rel="stylesheet" href="/style.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .prefix {
+        opacity: 0.5;
+      }
+      .suffix {
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
     <main class="markdown-body">
-      <h1><a href="https://llms-txt-reader.org">llms-txt-reader.org</a></h1>
+      <h1>
+        <img
+          src="./favicon.ico"
+          alt="Favicon"
+          style="width: 32px; height: 32px"
+        >
+        <a href="https://llms-txt-reader.org">llms-txt-reader.org</a>
+      </h1>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap">
+        <a
+          href="https://github.com/tzador/llms-txt-reader"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >Repo</a>
+        <span>|</span>
+        <a
+          href="https://github.com/tzador/llms-txt-reader/issues"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >Issues</a>
+        <span>|</span>
+        <a
+          href="https://github.com/tzador/llms-txt-reader/discussions"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >Discussions</a>
+        <span>|</span>
+        <a
+          href="https://news.ycombinator.com/item?id="
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >HN Post</a>
+        <span>|</span>
+        <a
+          href="https://discord.gg/AxgSvmjd3Z"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >Discord</a>
+      </div>
+      <br />
+
       <p>
-        Renders to HTML remote llms.txt and the linked .md file, suitable for
-        human reading.
+        Renders to HTML remote llms.txt and the linked .md files, suitable for
+        <strong>human</strong> reading.
+      </p>
+      <p>
+        Just prepend the URL of a <strong>llms.txt / llms-full.txt</strong> or
+        <strong>*.md</strong> resource with
+        <strong>https://llms-txt-reader.org/</strong>
       </p>
       <h2>Examples</h2>
       <ul>
         <li>
-          <a href="/https://fastht.ml/docs/llms.txt"
-          >https://fastht.ml/docs/llms.txt</a>
+          <a href="/https://fastht.ml/docs/llms.txt"><span class="prefix"
+            >https://llms-txt-reader.org/</span><span class="suffix"
+            >https://fastht.ml/docs/llms.txt</span></a>
         </li>
         <li>
-          <a href="/https://docs.zenml.io/llms.txt"
-          >https://docs.zenml.io/llms.txt</a>
+          <a href="/https://docs.zenml.io/llms.txt"><span class="prefix"
+            >https://llms-txt-reader.org/</span><span class="suffix"
+            >https://docs.zenml.io/llms.txt</span></a>
         </li>
         <li>
-          <a href="/https://www.better-auth.com/llms.txt"
-          >https://www.better-auth.com/llms.txt</a>
+          <a href="/https://www.better-auth.com/llms.txt"><span class="prefix"
+            >https://llms-txt-reader.org/</span><span class="suffix"
+            >https://www.better-auth.com/llms.txt</span></a>
         </li>
         <li>
-          <a href="/https://svelte.dev/llms-full.txt"
-          >https://svelte.dev/llms-full.txt</a>
+          <a href="/https://svelte.dev/llms-full.txt"><span class="prefix"
+            >https://llms-txt-reader.org/</span><span class="suffix"
+            >https://svelte.dev/llms-full.txt</span></a>
         </li>
         <li>
-          <a href="/https://llmstxt.org/llms.txt"
-          >https://llmstxt.org/llms.txt</a>
+          <a href="/https://llmstxt.org/llms.txt"><span class="prefix"
+            >https://llms-txt-reader.org/</span><span class="suffix"
+            >https://llmstxt.org/llms.txt</span></a>
         </li>
       </ul>
     </main>
