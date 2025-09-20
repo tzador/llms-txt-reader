@@ -10,8 +10,13 @@
     "unist-util-visit": "npm:unist-util-visit"
   },
   "deploy": {
-    "project": "740660cc-a107-404f-99c6-b5b84a0fb4f1",
+    "project": "ee765dcd-3ffa-4674-9c3e-b5387d988a8b",
     "exclude": [
+      "**/node_modules",
+      "**/node_modules",
+      "**/node_modules",
+      "**/node_modules",
+      "**/node_modules",
       "**/node_modules",
       "**/node_modules",
       "**/node_modules"

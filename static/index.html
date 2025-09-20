@@ -2,99 +2,289 @@
 <html>
   <head>
     <title>llms.txt reader</title>
-    <link rel="stylesheet" href="/github-markdown.css" type="text/css">
-    <link rel="stylesheet" href="/style.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+      /* Terminal-like theme */
+      :root {
+        --bg: #1a1b26;
+        --text: #a9b1d6;
+        --accent: #7aa2f7;
+        --success: #9ece6a;
+        --border: #414868;
+        --hover: #2ac3de;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Courier New", Courier, monospace;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Terminal window styling */
+      .terminal {
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 2rem;
+        margin: 1rem 0;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .prompt::before {
+        content: "$ ";
+        color: var(--success);
+      }
+
+      /* Links */
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px dashed var(--accent);
+        transition: all 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--hover);
+        border-bottom-style: solid;
+      }
+
+      /* Navigation */
+      .footer-nav {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 3rem 0 1rem 0;
+      }
+
+      .footer-nav a {
+        color: var(--text);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+        border-bottom: none;
+      }
+
+      .footer-nav a:hover {
+        color: var(--accent);
+        opacity: 1;
+      }
+
+      /* Form styling */
+      .url-form {
+        display: flex;
+        gap: 1rem;
+        margin: 2rem 0;
+        align-items: center;
+      }
+
+      input {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 0.5rem;
+        font-family: inherit;
+        border-radius: 4px;
+      }
+
+      button {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        padding: 0.5rem 1rem;
+        font-family: inherit;
+        cursor: pointer;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+
+      button:hover:not(:disabled) {
+        background: var(--hover);
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      /* Examples */
+      .examples {
+        list-style: none;
+      }
+
+      .examples li {
+        margin: 0.5rem 0;
+      }
+
       .prefix {
         opacity: 0.5;
       }
+
       .suffix {
-        font-weight: bold;
+        color: var(--success);
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        .ascii-header {
+          font-size: 0.6rem;
+        }
+
+        .url-form {
+          flex-direction: column;
+        }
       }
     </style>
   </head>
   <body>
-    <main class="markdown-body">
+    <div class="terminal">
       <h1>
         <img
-          src="./favicon.ico"
-          alt="Favicon"
+          src="https://llms-txt-reader.org/favicon.ico"
+          alt="llms-txt-reader.org"
           style="width: 32px; height: 32px"
-        >
-        <a href="https://llms-txt-reader.org">llms-txt-reader.org</a>
+        />
+        llms-txt-reader.org
       </h1>
 
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap">
-        <a
-          href="https://github.com/tzador/llms-txt-reader"
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-        >Repo</a>
-        <span>|</span>
-        <a
-          href="https://github.com/tzador/llms-txt-reader/issues"
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-        >Issues</a>
-        <span>|</span>
-        <a
-          href="https://github.com/tzador/llms-txt-reader/discussions"
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-        >Discussions</a>
-        <span>|</span>
-        <a
-          href="https://news.ycombinator.com/item?id="
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-        >HN Post</a>
-        <span>|</span>
-        <a
-          href="https://discord.gg/AxgSvmjd3Z"
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-        >Discord</a>
-      </div>
       <br />
 
+      A <strong>human-friendly</strong> viewer for machine-targeted <strong
+      >llms.txt</strong>
+      files and their linked <strong>markdown</strong> files.
+    </div>
+
+    <div class="terminal">
       <p>
-        Renders to HTML remote llms.txt and the linked .md files, suitable for
-        <strong>human</strong> reading.
+        Usage: Simply prepend <span style="color: var(--accent)"
+        >https://llms-txt-reader.org/</span> to any llms.txt, llms-full.txt, or
+        *.md URL.
       </p>
-      <p>
-        Just prepend the URL of a <strong>llms.txt / llms-full.txt</strong> or
-        <strong>*.md</strong> resource with
-        <strong>https://llms-txt-reader.org/</strong>
-      </p>
-      <h2>Examples</h2>
-      <ul>
+    </div>
+
+    <form class="url-form" id="readerForm">
+      <div>https://llms-txt-reader.org/</div>
+      <input
+        type="url"
+        id="urlInput"
+        placeholder="Enter a llms.txt or markdown URL here"
+        pattern="^https?://.*"
+      />
+      <button type="submit" id="submitButton" disabled>READ</button>
+    </form>
+
+    <script>
+      const form = document.getElementById("readerForm");
+      const input = document.getElementById("urlInput");
+      const button = document.getElementById("submitButton");
+
+      function isValidUrl(url) {
+        try {
+          new URL(url);
+          return url.endsWith(".md") ||
+            url.endsWith("/llms.txt") ||
+            url.endsWith("/llms-full.txt");
+        } catch {
+          return false;
+        }
+      }
+
+      input.addEventListener("input", (e) => {
+        const url = e.target.value.trim();
+        button.disabled = !isValidUrl(url);
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const url = input.value.trim();
+        if (isValidUrl(url)) {
+          window.location.href = "https://llms-txt-reader.org/" + url;
+        }
+      });
+    </script>
+
+    <div class="terminal">
+      <h2 style="color: var(--accent); margin-bottom: 1rem">
+        Examples:
+      </h2>
+      <ul class="examples">
         <li>
-          <a href="/https://fastht.ml/docs/llms.txt"><span class="prefix"
-            >https://llms-txt-reader.org/</span><span class="suffix"
-            >https://fastht.ml/docs/llms.txt</span></a>
+          <a href="/https://fastht.ml/docs/llms.txt">
+            <span class="prefix">https://llms-txt-reader.org/</span><span
+              class="suffix"
+            >https://fastht.ml/docs/llms.txt</span>
+          </a>
         </li>
         <li>
-          <a href="/https://docs.zenml.io/llms.txt"><span class="prefix"
-            >https://llms-txt-reader.org/</span><span class="suffix"
-            >https://docs.zenml.io/llms.txt</span></a>
+          <a href="/https://docs.zenml.io/llms.txt">
+            <span class="prefix">https://llms-txt-reader.org/</span><span
+              class="suffix"
+            >https://docs.zenml.io/llms.txt</span>
+          </a>
         </li>
         <li>
-          <a href="/https://www.better-auth.com/llms.txt"><span class="prefix"
-            >https://llms-txt-reader.org/</span><span class="suffix"
-            >https://www.better-auth.com/llms.txt</span></a>
+          <a href="/https://www.better-auth.com/llms.txt">
+            <span class="prefix">https://llms-txt-reader.org/</span><span
+              class="suffix"
+            >https://www.better-auth.com/llms.txt</span>
+          </a>
         </li>
         <li>
-          <a href="/https://svelte.dev/llms-full.txt"><span class="prefix"
-            >https://llms-txt-reader.org/</span><span class="suffix"
-            >https://svelte.dev/llms-full.txt</span></a>
+          <a href="/https://svelte.dev/llms-full.txt">
+            <span class="prefix">https://llms-txt-reader.org/</span><span
+              class="suffix"
+            >https://svelte.dev/llms-full.txt</span>
+          </a>
         </li>
         <li>
-          <a href="/https://llmstxt.org/llms.txt"><span class="prefix"
-            >https://llms-txt-reader.org/</span><span class="suffix"
-            >https://llmstxt.org/llms.txt</span></a>
+          <a href="/https://llmstxt.org/llms.txt">
+            <span class="prefix">https://llms-txt-reader.org/</span><span
+              class="suffix"
+            >https://llmstxt.org/llms.txt</span>
+          </a>
         </li>
       </ul>
-    </main>
+    </div>
+
+    <nav class="footer-nav">
+      <a
+        href="https://github.com/tzador/llms-txt-reader"
+        target="_blank"
+        rel="noopener noreferrer"
+      >REPO</a>
+      <a
+        href="https://github.com/tzador/llms-txt-reader/issues"
+        target="_blank"
+        rel="noopener noreferrer"
+      >ISSUES</a>
+      <a
+        href="https://github.com/tzador/llms-txt-reader/discussions"
+        target="_blank"
+        rel="noopener noreferrer"
+      >DISCUSS</a>
+      <a
+        href="https://news.ycombinator.com/item?id="
+        target="_blank"
+        rel="noopener noreferrer"
+      >HN</a>
+      <a
+        href="https://discord.gg/AxgSvmjd3Z"
+        target="_blank"
+        rel="noopener noreferrer"
+      >DISCORD</a>
+    </nav>
   </body>
 </html>
