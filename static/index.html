@@ -116,6 +116,25 @@
         cursor: not-allowed;
       }
 
+      .bookmarklet {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: var(--accent);
+        color: var(--bg) !important;
+        text-decoration: none;
+        border-radius: 4px;
+        border: 2px solid var(--border);
+        font-weight: bold;
+        cursor: move;
+        user-select: none;
+        transition: all 0.3s ease;
+      }
+
+      .bookmarklet:hover {
+        background: var(--hover);
+        border-color: var(--hover);
+      }
+
       /* Examples */
       .examples {
         list-style: none;
@@ -257,6 +276,23 @@
           </a>
         </li>
       </ul>
+    </div>
+
+    <div class="terminal">
+      <h2 style="color: var(--accent); margin-bottom: 1rem">
+        Bookmarklet
+      </h2>
+      <p style="margin-bottom: 1rem">
+        Drag this link to your bookmarks bar. Click it when viewing any llms.txt
+        or markdown file to render it:
+      </p>
+      <p style="text-align: center">
+        <a
+          href="javascript:(function(){var url=window.location.href;if(url.endsWith('.md')||url.endsWith('/llms.txt')||url.endsWith('/llms-full.txt')){window.location.href='https://llms-txt-reader.org/'+url;}else{alert('This page does not appear to be a llms.txt or markdown file.');}})();"
+          class="bookmarklet"
+          onclick="return false;"
+        >📖 Read with llms-txt-reader</a>
+      </p>
     </div>
 
     <nav class="footer-nav">
